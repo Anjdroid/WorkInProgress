@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Work_in_progress</string>
+
+    <string-array name="category_array">
+        <item>Food</item>
+        <item>Home</item>
+        <item>Transport</item>
+        <item>Clothing</item>
+        <item>Health</item>
+        <item>Savings</item>
+        <item>Education</item>
+        <item>Cosmetics</item>
+        <item>Fun</item>
+    </string-array>
 </resources>
