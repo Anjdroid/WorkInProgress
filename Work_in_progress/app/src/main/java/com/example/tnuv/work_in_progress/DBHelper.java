@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_TASK = "CREATE TABLE IF NOT EXISTS "
             + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME
             + " TEXT, " + KEY_DESC + " TEXT, " + KEY_VID
-            + " TEXT, " + KEY_IMG +" IMAGE, " + KEY_CREATED + "DATETIME, "+  KEY_PH_NO + "DATETIME "+ ")";
+            + " TEXT, " + KEY_IMG +" IMAGE, " + KEY_CREATED + "DATETIME, "+  KEY_DEADLINE + "DATETIME "+ ")";
 
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE IF NOT EXISTS " + TABLE_CATEGORY
             + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /*
  * Creating a task
  */
-    public long createTask(Task t, long cat_id) {
+    /*public long createTask(Task t, long cat_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -93,7 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return todo_id;
-    }
+    }*/
 
     // add category
 
