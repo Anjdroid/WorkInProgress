@@ -41,6 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_IMG = "image";
     private static final String KEY_CREATED = "created";
     private static final String KEY_DEADLINE = "deadline";
+    private static final String KEY_DONE = "done";
 
     private static final String KEY_COL = "color";
     private static final String KEY_LOC = "location";
@@ -51,7 +52,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_TASK = "CREATE TABLE IF NOT EXISTS "
             + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME
             + " TEXT, " + KEY_DESC + " TEXT, " + KEY_VID
-            + " TEXT, " + KEY_IMG +" TEXT, " + KEY_CREATED + "TEXT, "+  KEY_DEADLINE + "TEXT "+ ")";
+            + " TEXT, " + KEY_IMG +" TEXT, " + KEY_CREATED + "TEXT, "+  KEY_DEADLINE + "TEXT, "+ KEY_DONE + "INTEGER " + ")";
 
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE IF NOT EXISTS " + TABLE_CATEGORY
             + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
@@ -105,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO: DATES?
         values.put(KEY_CREATED, getDateTime());
         values.put(KEY_DEADLINE, t.getDeadline().toString());
+        values.put(KEY_DEADLINE, 0);
 
         // insert row
         long task_id = db.insert(TABLE_TASK, null, values);
@@ -141,6 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO: dates?
         t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
         t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+        t.setDone(c.getInt(c.getColumnIndex(KEY_DONE)));
 
         return t;
     }
@@ -170,6 +173,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 // TODO: dates?
                 t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
                 t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                t.setDone(c.getInt(c.getColumnIndex(KEY_DONE)));
 
                 tasks.add(t);
             } while (c.moveToNext());
@@ -208,6 +212,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 // TODO: dates?
                 t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
                 t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                t.setDone(c.getInt(c.getColumnIndex(KEY_DONE)));
 
                 // add to task list
                 tasks.add(t);
@@ -235,6 +240,15 @@ public class DBHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_TASK, values, KEY_ID + " = ?",
                 new String[] { String.valueOf(t.getID()) });
+    }
+
+    /**
+     * Set task done
+     */
+    public void taskIsDone(Task t) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_DONE, 1);
     }
 
     /**

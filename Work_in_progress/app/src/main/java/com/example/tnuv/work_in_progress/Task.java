@@ -18,6 +18,7 @@ public class Task {
     private String image;
     private String created;
     private String deadline;
+    private int done;
 
     // Empty constructor
     public Task(){
@@ -25,7 +26,7 @@ public class Task {
     }
 
     // constructor
-    public Task(int id, String name, String description, String video, String image, String created, String deadline) {
+    public Task(int id, String name, String description, String video, String image, String created, String deadline, int done) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,15 +34,15 @@ public class Task {
         this.image = image;
         this.created = created;
         this.deadline = deadline;
+        this.done = done;
     }
 
     // constructor
-    public Task(String name, String description, String video, String image, String created, String deadline) {
+    public Task(String name, String description, String video, String image, String deadline) {
         this.name = name;
         this.description = description;
         this.video = video;
         this.image = image;
-        this.created = created;
         this.deadline = deadline;
     }
 
@@ -113,5 +114,15 @@ public class Task {
     // setting deadline
     public void setDeadline(String deadline){
         this.deadline = deadline;
+    }
+
+    // getting done
+    public int getDone(){
+        return this.done;
+    }
+
+    // setting done
+    public void setDone(int done){
+        this.done = done;
     }
 }
