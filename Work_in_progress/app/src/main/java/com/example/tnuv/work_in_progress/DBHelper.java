@@ -22,10 +22,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     // Database Name
-    private static final String DATABASE_NAME = "todoManager";
+    private static final String DATABASE_NAME = "todoDB";
 
     // tables
     private static final String TABLE_TASK = "task";
@@ -49,19 +49,19 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_CAT_ID = "category_id";
     private static final String KEY_TASK_ID = "task_id";
 
-    private static final String CREATE_TABLE_TASK = "CREATE TABLE IF NOT EXISTS "
-            + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME
-            + " TEXT, " + KEY_DESC + " TEXT, " + KEY_VID
-            + " TEXT, " + KEY_IMG +" TEXT, " + KEY_CREATED + "TEXT, "+  KEY_DEADLINE + "TEXT, "+ KEY_DONE + "INTEGER " + ")";
+    private static final String CREATE_TABLE_TASK = "CREATE TABLE "
+            + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME
+            + " TEXT," + KEY_DESC + " TEXT," + KEY_VID
+            + " TEXT," + KEY_IMG + " TEXT," + KEY_CREATED + " TEXT,"+  KEY_DEADLINE + " TEXT,"+ KEY_DONE + " INTEGER" + ")";
 
-    private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE IF NOT EXISTS " + TABLE_CATEGORY
+    private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY
             + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-            + KEY_COL + " TEXT," + KEY_LOC + "TEXT "+ ")";
+            + KEY_COL + " TEXT," + KEY_LOC + " TEXT"+ ")";
 
     // todo_tag table create statement
-    private static final String CREATE_TABLE_TASK_CATEGORY = "CREATE TABLE IF NOT EXISTS "
+    private static final String CREATE_TABLE_TASK_CATEGORY = "CREATE TABLE "
             + TABLE_TASK_CAT + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
-            + KEY_TASK_ID + " INTEGER," + KEY_CAT_ID + " INTEGER " + ")";
+            + KEY_TASK_ID + " INTEGER," + KEY_CAT_ID + " INTEGER" + ")";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -76,7 +76,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // on upgrade do nothing
+        // on upgrade drop older tables
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASK);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASK_CAT);
+
+        // create new tables
+        onCreate(db);
     }
 
     /**

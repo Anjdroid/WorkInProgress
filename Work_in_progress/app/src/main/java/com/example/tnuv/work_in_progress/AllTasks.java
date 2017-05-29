@@ -45,6 +45,11 @@ public class AllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_all_tasks);
         db = new DBHelper(getApplicationContext());
 
+        setUpDatabase();
+
+        List ts = db.getAllTasks();
+        Log.d("", ts.toString());
+
         //category view
         ImageButton catButton = (ImageButton) findViewById(R.id.catView);
         catButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +70,7 @@ public class AllTasks extends AppCompatActivity {
         LinearLayout rl = (LinearLayout) findViewById(R.id.linear);
         List<Task> taski = db.getAllTasks();
         for(Task t: taski) {
+            Log.d("taski", t.toString());
             CheckBox cb = new CheckBox(this);
             cb.setTypeface(Typeface.create("casual", Typeface.NORMAL));
             cb.setPadding(100, 0, 100, 0);
@@ -73,12 +79,15 @@ public class AllTasks extends AppCompatActivity {
             cb.setId(t.getID());
             float hel2 = (float) ((click-1)*130);
             cb.setTranslationY(hel2);
+            rl.addView(cb);
             click++;
             cb.setOnClickListener(new MyListener(cb.getId()));
         }
     }
 
-    private void setUpDatabase() {
+    public void setUpDatabase() {
+        db = new DBHelper(getApplicationContext());
+
         // create categories
         Category c1 = new Category("Food", "ffa500", "");
         Category c2 = new Category("Home", "ffa500", "");
