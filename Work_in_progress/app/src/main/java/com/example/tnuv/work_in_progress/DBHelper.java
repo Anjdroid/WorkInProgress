@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_TASK = "CREATE TABLE IF NOT EXISTS "
             + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME
             + " TEXT, " + KEY_DESC + " TEXT, " + KEY_VID
-            + " TEXT, " + KEY_IMG +" IMAGE, " + KEY_CREATED + "DATETIME, "+  KEY_DEADLINE + "DATETIME "+ ")";
+            + " TEXT, " + KEY_IMG +" TEXT, " + KEY_CREATED + "TEXT, "+  KEY_DEADLINE + "TEXT "+ ")";
 
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE IF NOT EXISTS " + TABLE_CATEGORY
             + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
@@ -137,10 +137,10 @@ public class DBHelper extends SQLiteOpenHelper {
         t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
         t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
         // TODO: how to set image?
-        //t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
+        t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
         // TODO: dates?
-        //t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
-        //t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+        t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
+        t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
 
         return t;
     }
@@ -166,10 +166,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
                 t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
                 // TODO: how to set image?
-                //t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
+                t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
                 // TODO: dates?
-                //t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
-                //t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
+                t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
 
                 tasks.add(t);
             } while (c.moveToNext());
@@ -204,10 +204,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
                 t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
                 // TODO: how to set image?
-                //t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
+                t.setImage(c.getString(c.getColumnIndex(KEY_IMG)));
                 // TODO: dates?
-                //t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
-                //t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
+                t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
+                t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
 
                 // add to task list
                 tasks.add(t);

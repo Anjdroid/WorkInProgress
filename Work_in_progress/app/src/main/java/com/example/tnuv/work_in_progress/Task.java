@@ -15,9 +15,9 @@ public class Task {
     private String name;
     private String description;
     private String video;
-    private Image image;
-    private Date created;
-    private Date deadline;
+    private String image;
+    private String created;
+    private String deadline;
 
     // Empty constructor
     public Task(){
@@ -25,7 +25,7 @@ public class Task {
     }
 
     // constructor
-    public Task(int id, String name, String description, String video, Image image, Date created, Date deadline) {
+    public Task(int id, String name, String description, String video, String image, String created, String deadline) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,7 +36,7 @@ public class Task {
     }
 
     // constructor
-    public Task(String name, String description, String video, Image image, Date created, Date deadline) {
+    public Task(String name, String description, String video, String image, String created, String deadline) {
         this.name = name;
         this.description = description;
         this.video = video;
@@ -86,32 +86,32 @@ public class Task {
     }
 
     // getting image
-    public Image getImage(){
+    public String getImage(){
         return this.image;
     }
 
     // setting image
-    public void setImage(Image image){
+    public void setImage(String image){
         this.image = image;
     }
 
     // getting category
-    public Date getCreated(){
+    public String getCreated(){
         return this.created;
     }
 
     // setting category
-    public void setCreated(Date created){
+    public void setCreated(String created){
         this.created = created;
     }
 
     // getting deadline
-    public Date getDeadline(){
+    public String getDeadline(){
         return this.deadline;
     }
 
     // setting deadline
-    public void setDeadline(Date deadline){
+    public void setDeadline(String deadline){
         this.deadline = deadline;
     }
 }
