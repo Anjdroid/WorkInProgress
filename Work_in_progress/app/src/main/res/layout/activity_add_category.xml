@@ -72,32 +72,7 @@
                     android:inputType="textPersonName" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100px"
-                    android:fontFamily="casual"
-                    android:text="Color: "
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
-
-                <Spinner
-                    android:id="@+id/color_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="100px"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView4"
@@ -120,6 +95,54 @@
                 android:fontFamily="casual"
                 android:hint="Add location"
                 android:inputType="textMultiLine" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100px"
+                android:fontFamily="casual"
+                android:text="Color: "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+            <com.flask.colorpicker.ColorPickerView
+                android:id="@+id/color_picker_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100px"
+                android:layout_marginEnd="100px"
+                app:alphaSlider="true"
+                app:density="12"
+                app:lightnessSlider="true"
+                app:wheelType="CIRCLE"
+                app:lightnessSliderView="@+id/v_lightness_slider"
+                app:alphaSliderView="@+id/v_alpha_slider"
+                />
+
+            <com.flask.colorpicker.slider.LightnessSlider
+                android:id="@+id/v_lightness_slider"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="100px"
+                android:layout_marginEnd="100px"
+                />
+
+            <com.flask.colorpicker.slider.AlphaSlider
+                android:id="@+id/v_alpha_slider"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="100px"
+                android:layout_marginEnd="100px"
+                />
 
         </LinearLayout>
     </ScrollView>
