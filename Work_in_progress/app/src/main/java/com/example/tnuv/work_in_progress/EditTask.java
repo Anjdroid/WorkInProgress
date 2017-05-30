@@ -41,9 +41,9 @@ public class EditTask extends AppCompatActivity {
         Task t2 = new Task(name, description, video, image, deadline);
 
         // update task
-        int updateTask = db.updateTask(t2);
+        //int updateTask = db.updateTask(t2);
         // also update category of task
-        int update = db.updateTaskCat(task_id, cat_id);
+        //int update = db.updateTaskCat(task_id, cat_id);
 
     }
 

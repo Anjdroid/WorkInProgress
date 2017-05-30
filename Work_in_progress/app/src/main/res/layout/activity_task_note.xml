@@ -41,9 +41,8 @@
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:background="@drawable/button2"
-                android:padding="7dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/settings" />
+                app:srcCompat="@drawable/edit" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -59,47 +58,55 @@
             android:layout_marginTop="50px"
             android:orientation="vertical">
 
-            <EditText
+            <TextView
                 android:id="@+id/editText2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="100px"
                 android:layout_marginStart="100px"
+                android:layout_marginTop="20px"
                 android:ems="10"
                 android:fontFamily="casual"
+                android:textSize="20sp"
                 android:hint="Task description"
                 android:inputType="textMultiLine" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="100px"
                 android:layout_marginStart="100px"
+                android:layout_marginTop="20px"
                 android:ems="10"
                 android:fontFamily="casual"
+                android:textSize="20sp"
                 android:hint="Task video"
                 android:inputType="textMultiLine" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="100px"
                 android:layout_marginStart="100px"
+                android:layout_marginTop="20px"
                 android:ems="10"
                 android:fontFamily="casual"
+                android:textSize="20sp"
                 android:hint="Task image"
                 android:inputType="textMultiLine" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editText5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="100px"
                 android:layout_marginStart="100px"
+                android:layout_marginTop="20px"
                 android:ems="10"
                 android:fontFamily="casual"
+                android:textSize="20sp"
                 android:hint="Task deadline"
                 android:inputType="textMultiLine" />
 
@@ -107,32 +114,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="20px">
-
-            <Button
-                android:id="@+id/addTask"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="20px"
-                android:background="@drawable/button2"
-                android:text="back"
-                android:textColor="#FFE600"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-    </LinearLayout>
 </LinearLayout>

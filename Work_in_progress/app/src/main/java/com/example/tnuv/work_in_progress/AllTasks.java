@@ -65,6 +65,22 @@ public class AllTasks extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //location view
+        ImageButton locButton = (ImageButton) findViewById(R.id.locView);
+        locButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AllTasks.this, MapsView.class);
+                startActivity(intent);
+            }
+        });
+        //settings
+        ImageButton setButton = (ImageButton) findViewById(R.id.set);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AllTasks.this, Settings.class);
+                startActivity(intent);
+            }
+        });
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
