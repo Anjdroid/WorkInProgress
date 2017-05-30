@@ -1,11 +1,13 @@
 package com.example.tnuv.work_in_progress;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,12 +45,19 @@ public class TaskNote extends AppCompatActivity {
         TextView desc = (TextView) findViewById(R.id.editText2);
         desc.setText(String.valueOf(t.getDescription()));
         // TODO: get category spinner and set spinner value to task category
-        TextView video = (TextView) findViewById(R.id.editText3);
+        TextView video = (TextView) findViewById (R.id.editText3);
         video.setText(t.getVideo());
         TextView image = (TextView) findViewById(R.id.editText4);
         image.setText(t.getImage());
         TextView deadline = (TextView) findViewById(R.id.editText5);
         deadline.setText(t.getDeadline());
+        TextView category = (TextView) findViewById(R.id.editText22);
+        Category c = db.getTaskCategory(task_id);
+        category.setText(c.getName());
+
+        ScrollView sv = (ScrollView) findViewById(R.id.scroll);
+        sv.setBackgroundColor(Color.parseColor(c.getColor()));
+
 
         // set data in view
     }

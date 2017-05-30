@@ -50,13 +50,27 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="397dp"
-        android:layout_weight="0.74">
+        android:layout_weight="0.74"
+        android:id="@+id/scroll">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50px"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/editText22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="100px"
+                android:layout_marginStart="100px"
+                android:layout_marginTop="20px"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:textSize="20sp"
+                android:hint="Category"
+                android:inputType="textMultiLine" />
 
             <TextView
                 android:id="@+id/editText2"

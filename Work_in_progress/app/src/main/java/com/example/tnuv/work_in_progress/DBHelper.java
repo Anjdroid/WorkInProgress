@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 11;
 
     // Database Name
     private static final String DATABASE_NAME = "todoDB";
@@ -392,6 +392,27 @@ public class DBHelper extends SQLiteOpenHelper {
         long id = db.insert(TABLE_TASK_CAT, null, values);
 
         return id;
+    }
+
+    public Category getTaskCategory(long task_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TASK_CAT + " WHERE "
+                + KEY_TASK_ID + " = " + task_id;
+
+        Log.e("LOG", selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        long idd = c.getLong(c.getColumnIndex(KEY_CAT_ID));
+        Log.e("cursor", String.valueOf(idd));
+
+        Category c1 = getCategory(idd);
+
+        return c1;
     }
 
     /**
