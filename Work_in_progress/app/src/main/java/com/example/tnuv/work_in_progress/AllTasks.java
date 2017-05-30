@@ -45,7 +45,7 @@ public class AllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_all_tasks);
         db = new DBHelper(getApplicationContext());
 
-        setUpDatabase();
+        //setUpDatabase();
 
         List ts = db.getAllTasks();
 
@@ -81,6 +81,8 @@ public class AllTasks extends AppCompatActivity {
             click++;
             cb.setOnClickListener(new MyListener(cb.getId()));
         }
+
+
     }
 
     public void setUpDatabase() {
