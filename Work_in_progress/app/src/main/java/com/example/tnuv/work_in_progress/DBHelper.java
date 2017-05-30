@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
+    private static final String KEY_NAME_TASK = "name";
 
     private static final String KEY_DESC = "description";
     private static final String KEY_VID = "video";
@@ -210,7 +211,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 Task t = new Task();
                 t.setID(c.getInt(c.getColumnIndex(KEY_ID)));
-                t.setName((c.getString(c.getColumnIndex(KEY_NAME))));
+                t.setName((c.getString(c.getColumnIndex(KEY_NAME_TASK))));
                 t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
                 t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
                 // TODO: how to set image?
