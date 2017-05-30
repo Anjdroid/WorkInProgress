@@ -314,6 +314,31 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * get a single category
+     */
+    public Category getCategory(long cat_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_CATEGORY + " WHERE "
+                + KEY_ID + " = " + cat_id;
+
+        Log.e("LOG", selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Category c1 = new Category();
+        c1.setID(c.getInt(c.getColumnIndex(KEY_ID)));
+        c1.setName((c.getString(c.getColumnIndex(KEY_NAME))));
+        c1.setColor(c.getString(c.getColumnIndex(KEY_COL)));
+        c1.setLocation((c.getString(c.getColumnIndex(KEY_LOC))));
+
+        return c1;
+    }
+
+    /**
      * Updating a category
      */
     public int updateCategory(Category cat) {

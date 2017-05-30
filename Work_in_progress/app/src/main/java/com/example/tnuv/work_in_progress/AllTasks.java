@@ -48,7 +48,6 @@ public class AllTasks extends AppCompatActivity {
         setUpDatabase();
 
         List ts = db.getAllTasks();
-        Log.d("", ts.toString());
 
         //category view
         ImageButton catButton = (ImageButton) findViewById(R.id.catView);
@@ -70,7 +69,6 @@ public class AllTasks extends AppCompatActivity {
         LinearLayout rl = (LinearLayout) findViewById(R.id.linear);
         List<Task> taski = db.getAllTasks();
         for(Task t: taski) {
-            Log.d("taski", t.toString());
             CheckBox cb = new CheckBox(this);
             cb.setTypeface(Typeface.create("casual", Typeface.NORMAL));
             cb.setPadding(100, 0, 100, 0);
