@@ -3,7 +3,9 @@ package com.example.tnuv.work_in_progress;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,9 @@ import java.util.List;
 public class AddTask extends AppCompatActivity {
 
     private DBHelper db;
+    private List<String> names;
+    private List<Category> categories;
+    private Category selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +48,10 @@ public class AddTask extends AppCompatActivity {
                 String video= video_t.getText().toString();
                 String image = image_t.getText().toString();
                 String deadline= "";
-                // TODO deadline + category
+                // TODO deadline
                 // create new task
                 Task t = new Task(name, desc, video, image, deadline);
-                long task_id = db.createTask(t, 10);
-
+                long task_id = db.createTask(t, selectedCategory.getID());
                 Intent intent = new Intent(AddTask.this, AllTasks.class);
                 startActivity(intent);
             }
@@ -55,11 +59,25 @@ public class AddTask extends AppCompatActivity {
 
     }
 
+    AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener()
+    {
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int pos, long id) {
+            selectedCategory = categories.get(pos);
+            Log.e("lala", selectedCategory.getName());
+
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+
+        }
+    };
+
     private void loadSpinnerData(DBHelper db, Spinner spinner) {
 
         // Spinner Drop down elements
-        List<String> names = new ArrayList<String>();
-        List<Category> categories = db.getAllTags();
+        names = new ArrayList<String>();
+        categories = db.getAllTags();
         for (Category c : categories) {
             names.add(c.getName());
         }
@@ -72,6 +90,7 @@ public class AddTask extends AppCompatActivity {
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+        spinner.setOnItemSelectedListener(spinnerListener);
     }
 
 
