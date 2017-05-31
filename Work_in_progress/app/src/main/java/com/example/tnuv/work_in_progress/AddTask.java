@@ -1,8 +1,12 @@
 package com.example.tnuv.work_in_progress;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -27,19 +31,27 @@ public class AddTask extends AppCompatActivity {
 
         loadSpinnerData(db, spinner);
 
-        // get task data from view
-        String name = "";
-        String description = "";
-        String video = "";
-        String image = "";
-        String deadline = "";
-        Task t = new Task(name, description, video, image, deadline);
+        Button addTask = (Button) findViewById(R.id.addTask);
+        addTask.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText name_t = (EditText) findViewById(R.id.editText);
+                EditText desc_t = (EditText) findViewById(R.id.editText2);
+                EditText video_t = (EditText) findViewById(R.id.editText);
+                EditText image_t = (EditText) findViewById(R.id.editText2);
+                String name= name_t.getText().toString();
+                String desc = desc_t.getText().toString();
+                String video= video_t.getText().toString();
+                String image = image_t.getText().toString();
+                String deadline= "";
+                // TODO deadline + category
+                // create new task
+                Task t = new Task(name, desc, video, image, deadline);
+                long task_id = db.createTask(t, 10);
 
-        // get category id from view
-        long cat_id = 1;
-
-        // create new task
-        long task_id = db.createTask(t, cat_id);
+                Intent intent = new Intent(AddTask.this, AllTasks.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
