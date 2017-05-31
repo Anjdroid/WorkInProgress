@@ -36,7 +36,9 @@ public class CategoryTasks extends AppCompatActivity {
             intent.putExtra("id", Integer.toString(this.id));
             startActivity(intent);
         }
+
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class CategoryTasks extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //add category
         Button addCat = (Button) findViewById(R.id.addTask);
         addCat.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +131,13 @@ public class CategoryTasks extends AppCompatActivity {
             ib.setTextSize(20);
             ll.addView(ib);
             rl.addView(ll);
+            //add task
+            ib.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(CategoryTasks.this, AddTask.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
