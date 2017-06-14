@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -58,12 +59,19 @@ public class EditTask extends AppCompatActivity {
                 String desc = ((EditText) findViewById(R.id.editText2)).getText().toString();
                 String video = ((EditText) findViewById(R.id.editText3)).getText().toString();
                 String image = ((EditText) findViewById(R.id.editText4)).getText().toString();
-                // TODO: deadline and category
+                // TODO:  category
                 Task t = db.getTask(task_id);
                 t.setName(name);
                 t.setDescription(desc);
                 t.setVideo(video);
                 t.setImage(image);
+                DatePicker date = (DatePicker) findViewById(R.id.datePicker2);
+                int day1 = date.getDayOfMonth();
+                int month1 = date.getMonth() + 1;
+                int year1 = date.getYear();
+                String deadline = Integer.toString(day1)+". "+Integer.toString(month1)+". "+Integer.toString(year1);
+                t.setDeadline(deadline);
+
                 db.updateTask(t);
                 Task r2 = db.getTask(task_id);
                 String lala = t.getName();

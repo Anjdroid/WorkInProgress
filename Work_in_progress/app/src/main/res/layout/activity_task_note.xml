@@ -44,6 +44,15 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/edit" />
         </RelativeLayout>
+        <ImageButton
+            android:id="@+id/trash"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button1"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/trash" />
 
     </LinearLayout>
 
@@ -69,6 +78,7 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:textSize="20sp"
+                android:text="@string/name_label"
                 android:hint="Category"
                 android:inputType="textMultiLine" />
 
@@ -82,6 +92,7 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:textSize="20sp"
+                android:text="@string/name2_label"
                 android:hint="Task description"
                 android:inputType="textMultiLine" />
 
@@ -95,6 +106,7 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:textSize="20sp"
+                android:text="@string/video_label"
                 android:hint="Task video"
                 android:inputType="textMultiLine" />
 
@@ -108,6 +120,7 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:textSize="20sp"
+                android:text="@string/img_label"
                 android:hint="Task image"
                 android:inputType="textMultiLine" />
 
@@ -121,11 +134,15 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:textSize="20sp"
+                android:text="@string/deadline_label"
                 android:hint="Task deadline"
                 android:inputType="textMultiLine" />
 
 
         </LinearLayout>
+
     </ScrollView>
+
+
 
 </LinearLayout>

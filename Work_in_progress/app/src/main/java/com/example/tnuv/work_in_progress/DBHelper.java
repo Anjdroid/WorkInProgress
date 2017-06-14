@@ -108,12 +108,9 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(KEY_NAME_TASK, t.getName());
         values.put(KEY_DESC, t.getDescription());
         values.put(KEY_VID, t.getVideo());
-        // TODO: what to do with image??
         values.put(KEY_IMG, t.getImage().toString());
-        // TODO: DATES?
         values.put(KEY_CREATED, getDateTime());
         values.put(KEY_DEADLINE, t.getDeadline().toString());
-        values.put(KEY_DEADLINE, 0);
 
         // insert row
         long task_id = db.insert(TABLE_TASK, null, values);
@@ -257,6 +254,9 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_DONE, 1);
+
+        db.update(TABLE_TASK, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(t.getID()) });
     }
 
     /**
@@ -355,7 +355,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Deleting a category (+ tasks under this category)
+     * Deleting a category (+ deletes all tasks if boolean is true)
      */
     public void deleteCategory(Category cat, boolean should_delete_all_cat_tasks) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -372,7 +372,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 deleteTask(t.getID());
             }
         }
-
         // now delete the category
         db.delete(TABLE_CATEGORY, KEY_ID + " = ?",
                 new String[] { String.valueOf(cat.getID()) });

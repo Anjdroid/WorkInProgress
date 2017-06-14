@@ -32,6 +32,18 @@ public class TaskNote extends AppCompatActivity {
             }
         });
 
+        // delete task
+        ImageButton trashButton = (ImageButton) findViewById(R.id.trash);
+        trashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // delete task
+                db.deleteTask(idd);
+                // go to all tasks activity
+                Intent intent = new Intent(TaskNote.this, AllTasks.class);
+                startActivity(intent);
+            }
+        });
+
         db = new DBHelper(getApplicationContext());
         Intent intent = getIntent();
         id1 = intent.getStringExtra("id");
@@ -43,17 +55,17 @@ public class TaskNote extends AppCompatActivity {
         TextView name = (TextView) findViewById(R.id.textView);
         name.setText(t.getName());
         TextView desc = (TextView) findViewById(R.id.editText2);
-        desc.setText(String.valueOf(t.getDescription()));
-        // TODO: get category spinner and set spinner value to task category
+        desc.setText("Description:  "+String.valueOf(t.getDescription()));
         TextView video = (TextView) findViewById (R.id.editText3);
-        video.setText(t.getVideo());
+        video.setText("Video:  "+t.getVideo());
         TextView image = (TextView) findViewById(R.id.editText4);
-        image.setText(t.getImage());
+        image.setText("Image:  "+t.getImage());
         TextView deadline = (TextView) findViewById(R.id.editText5);
-        deadline.setText(t.getDeadline());
+        deadline.setText("Deadline:  "+t.getDeadline());
+
         TextView category = (TextView) findViewById(R.id.editText22);
         Category c = db.getTaskCategory(task_id);
-        category.setText(c.getName());
+        category.setText("Category:  "+c.getName());
 
         ScrollView sv = (ScrollView) findViewById(R.id.scroll);
         sv.setBackgroundColor(Color.parseColor(c.getColor()));

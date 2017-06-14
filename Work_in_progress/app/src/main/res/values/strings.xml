@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Work_in_progress</string>
+    <string name="name_label">Category</string>
+    <string name="name2_label">Task description</string>
+    <string name="video_label">Video:</string>
+    <string name="img_label">Task image:</string>
+    <string name="deadline_label">Task deadline:</string>
 
     <string-array name="category_array">
         <item>Food</item>

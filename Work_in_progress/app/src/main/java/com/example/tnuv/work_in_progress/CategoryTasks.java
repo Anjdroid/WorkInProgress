@@ -117,6 +117,14 @@ public class CategoryTasks extends AppCompatActivity {
                 ll2.addView(tw2);
                 ll.addView(ll2);
                 ll.setPadding(100, 0, 100, 0);
+
+                // check if task is done
+                boolean isChecked = false;
+                if (t.getDone() == 1) {
+                    isChecked = true;
+                }
+                cb.setChecked(isChecked);
+
                 tw2.setOnClickListener(new CategoryTasks.MyListener(cb.getId()));
             }
             Button ib = new Button(this);

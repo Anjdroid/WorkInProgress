@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -27,10 +28,6 @@ public class AddTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
         Spinner spinner = (Spinner) findViewById(R.id.category_spinner);
-        /*ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.category_array, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter2);*/
 
         db = new DBHelper(getApplicationContext());
 
@@ -47,8 +44,15 @@ public class AddTask extends AppCompatActivity {
                 String desc = desc_t.getText().toString();
                 String video= video_t.getText().toString();
                 String image = image_t.getText().toString();
-                String deadline= "";
-                // TODO deadline
+
+                DatePicker date = (DatePicker) findViewById(R.id.datePicker2);
+                int day1 = date.getDayOfMonth();
+                int month1 = date.getMonth() + 1;
+                int year1 = date.getYear();
+
+                String deadline = Integer.toString(day1)+". "+Integer.toString(month1)+". "+Integer.toString(year1);
+                Log.d("dd", deadline);
+
                 // create new task
                 Task t = new Task(name, desc, video, image, deadline);
                 long task_id = db.createTask(t, selectedCategory.getID());
