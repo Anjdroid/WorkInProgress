@@ -1,11 +1,17 @@
 package com.example.tnuv.work_in_progress;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.webkit.URLUtil;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +22,8 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 import java.net.URL;
+
+import static com.example.tnuv.work_in_progress.R.id.imageView;
 
 public class TaskNote extends AppCompatActivity {
 
@@ -67,20 +75,20 @@ public class TaskNote extends AppCompatActivity {
 
         //image
         String url = t.getImage();
-        Drawable dd = LoadImage(url);
+        //Drawable dd = LoadImage(url);
         LinearLayout ll = (LinearLayout) findViewById(R.id.note);
-        if (dd != null) {
-            ImageView iv = new ImageView(this);
-            iv.setBackground(dd);
-            ll.addView(iv);
-        }
-        else {
+
+        if (URLUtil.isValidUrl(url)) {
+            WebView web = new WebView(this);
+            String data = "<html><body ><img id=\"resizeImage\" src=\""+url+"\" width=\"80%\" alt=\"\" align=\"middle\" /></body></html>";
+            web.loadData(data, "text/html; charset=UTF-8", null);
+            ll.addView(web);
+        } else {
             TextView tv = new TextView(this);
-            tv.setText("no image");
+            tv.setText("\n" +
+                    "        no image");
             ll.addView(tv);
         }
-        /*TextView image = (TextView) findViewById(R.id.editText4);
-        image.setText(t.getImage());*/
 
         TextView deadline = (TextView) findViewById(R.id.editText5);
         deadline.setText("Deadline:  "+t.getDeadline());
@@ -92,17 +100,5 @@ public class TaskNote extends AppCompatActivity {
         ScrollView sv = (ScrollView) findViewById(R.id.scroll);
         sv.setBackgroundColor(Color.parseColor(c.getColor()));
 
-
-        // set data in view
-    }
-
-    public static Drawable LoadImage(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
     }
 }

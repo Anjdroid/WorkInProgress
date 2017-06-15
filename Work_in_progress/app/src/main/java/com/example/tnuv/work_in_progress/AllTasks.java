@@ -1,8 +1,10 @@
 package com.example.tnuv.work_in_progress;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,7 +28,6 @@ import java.util.List;
 public class AllTasks extends AppCompatActivity {
     private DBHelper db;
     private int click = 1;
-    private int checkboxState = 0;
 
     public class MyListener implements View.OnClickListener {
         int id;
@@ -41,13 +43,34 @@ public class AllTasks extends AppCompatActivity {
         }
     }
 
+    public class MyListener2 implements View.OnClickListener {
+        int id;
+
+        public MyListener2(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(View v) {
+            db = new DBHelper(getApplicationContext());
+            Task t = db.getTask(this.id);
+            if (((CheckBox) v).isChecked()) {
+                db.taskIsDone(t, 1);
+
+            } else {
+                db.taskIsDone(t, 0);
+            }
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_tasks);
         db = new DBHelper(getApplicationContext());
 
-        //setUpDatabase();
+        setUpDatabase();
 
         List ts = db.getAllTasks();
 
@@ -102,30 +125,9 @@ public class AllTasks extends AppCompatActivity {
             cb.setId(t.getID());
             tw.setId(t.getID());
 
-            // save checkbox status to database
-            checkboxState = 0;
-            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton arg0, boolean checked) {
-                    // TODO Auto-generated method stub
-                    if(checked)
-                    {
-                        checkboxState = 1;
-                    }
-                }
-            });
-            Log.d("ch", Integer.toString(checkboxState));
-            if (checkboxState == 1) {
-                db.taskIsDone(t);
-                Log.d("ch", Integer.toString(checkboxState));
-            }
-
-            ll.addView(cb);
-            ll.addView(tw);
-            rl.addView(ll);
-
             // see if task is done and check checkbox
+            cb.setOnClickListener(new MyListener2(t.getID()));
+
             boolean isChecked = false;
             if (t.getDone() == 1) {
                 isChecked = true;
@@ -133,6 +135,10 @@ public class AllTasks extends AppCompatActivity {
             cb.setChecked(isChecked);
 
             tw.setOnClickListener(new MyListener(tw.getId()));
+
+            ll.addView(cb);
+            ll.addView(tw);
+            rl.addView(ll);
         }
     }
 

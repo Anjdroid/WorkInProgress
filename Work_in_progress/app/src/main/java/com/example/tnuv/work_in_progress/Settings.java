@@ -33,9 +33,8 @@ public class Settings extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Category c = db.getCategory(this.id);
-            //db.deleteCategory(c, true);
-            // A TUKI ZIHR SE TUT TASKI ODSTRANIJO?
-            // DELETETASK
+            // delete category and tasks beloging to category
+            db.deleteCategory(c, true);
             finish();
             startActivity(getIntent());
         }

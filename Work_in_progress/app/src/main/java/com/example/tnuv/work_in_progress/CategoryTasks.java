@@ -37,9 +37,27 @@ public class CategoryTasks extends AppCompatActivity {
             intent.putExtra("id", Integer.toString(this.id));
             startActivity(intent);
         }
-
     }
 
+    public class MyListener2 implements View.OnClickListener {
+        int id;
+
+        public MyListener2(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public void onClick(View v) {
+            db = new DBHelper(getApplicationContext());
+            Task t = db.getTask(this.id);
+            if (((CheckBox) v).isChecked()) {
+                db.taskIsDone(t, 1);
+
+            } else {
+                db.taskIsDone(t, 0);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +136,9 @@ public class CategoryTasks extends AppCompatActivity {
                 ll2.addView(tw2);
                 ll.addView(ll2);
                 ll.setPadding(100, 0, 100, 0);
+
+                // see if task is done and check checkbox
+                cb.setOnClickListener(new CategoryTasks.MyListener2(t.getID()));
 
                 // check if task is done
                 boolean isChecked = false;

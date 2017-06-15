@@ -250,10 +250,10 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Set task done
      */
-    public void taskIsDone(Task t) {
+    public void taskIsDone(Task t, int value) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_DONE, 1);
+        values.put(KEY_DONE, value);
 
         db.update(TABLE_TASK, values, KEY_ID + " = ?",
                 new String[] { String.valueOf(t.getID()) });
