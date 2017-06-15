@@ -41,8 +41,6 @@ public class AllTasks extends AppCompatActivity {
         }
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,8 +134,6 @@ public class AllTasks extends AppCompatActivity {
 
             tw.setOnClickListener(new MyListener(tw.getId()));
         }
-
-
     }
 
     public void setUpDatabase() {

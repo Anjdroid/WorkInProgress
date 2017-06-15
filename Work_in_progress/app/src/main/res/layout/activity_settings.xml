@@ -41,33 +41,6 @@
             android:layout_marginTop="50px"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="100px"
-                    android:fontFamily="casual"
-                    android:text="Home page:"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
-
-                <Spinner
-                    android:id="@+id/home_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="100px"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -77,18 +50,17 @@
                 android:paddingTop="30px"
                 android:text="EDIT CATEGORIES "
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editText2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="100px"
-                android:layout_marginStart="100px"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="Add location"
-                android:inputType="textMultiLine" />
+                android:layout_marginTop="50px"
+                android:orientation="vertical"
+                android:id="@+id/linearno">
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView5"
@@ -99,7 +71,8 @@
                 android:paddingTop="30px"
                 android:text="ABOUT"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView6"
