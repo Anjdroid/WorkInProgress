@@ -50,6 +50,15 @@ public class Settings extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(100, 0, 100, 0);
 
+        // back button
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         LinearLayout lin = (LinearLayout) findViewById(R.id.linearno);
         List<Category> catt = db.getAllTags();
         int i = 0;

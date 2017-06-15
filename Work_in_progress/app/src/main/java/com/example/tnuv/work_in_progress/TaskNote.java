@@ -1,5 +1,6 @@
 package com.example.tnuv.work_in_progress;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,11 +8,13 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -58,6 +61,15 @@ public class TaskNote extends AppCompatActivity {
             }
         });
 
+        // back button
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         db = new DBHelper(getApplicationContext());
         Intent intent = getIntent();
         id1 = intent.getStringExtra("id");
@@ -101,4 +113,6 @@ public class TaskNote extends AppCompatActivity {
         sv.setBackgroundColor(Color.parseColor(c.getColor()));
 
     }
+
+
 }

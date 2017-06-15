@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,12 +45,19 @@ public class EditTask extends AppCompatActivity {
         name.setText(t.getName());
         EditText desc = (EditText) findViewById(R.id.editText2);
         desc.setText(String.valueOf(t.getDescription()));
-        // TODO: get category spinner and set spinner value to task category
         EditText video = (EditText) findViewById(R.id.editText3);
         video.setText(t.getVideo());
         EditText image = (EditText) findViewById(R.id.editText4);
         image.setText(t.getImage());
-        // TODO: set date
+
+        // back button
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
         //save button
         Button saveButoon = (Button) findViewById(R.id.addTask);
@@ -59,7 +67,7 @@ public class EditTask extends AppCompatActivity {
                 String desc = ((EditText) findViewById(R.id.editText2)).getText().toString();
                 String video = ((EditText) findViewById(R.id.editText3)).getText().toString();
                 String image = ((EditText) findViewById(R.id.editText4)).getText().toString();
-                // TODO:  category
+
                 Task t = db.getTask(task_id);
                 t.setName(name);
                 t.setDescription(desc);

@@ -14,6 +14,16 @@
         android:gravity="top"
         android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@drawable/button2"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/back" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -32,6 +33,15 @@ public class AddTask extends AppCompatActivity {
         db = new DBHelper(getApplicationContext());
 
         loadSpinnerData(db, spinner);
+
+        // back button
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
 
         Button addTask = (Button) findViewById(R.id.addTask);
         addTask.setOnClickListener(new View.OnClickListener() {

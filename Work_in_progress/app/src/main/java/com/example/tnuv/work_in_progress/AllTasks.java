@@ -70,7 +70,7 @@ public class AllTasks extends AppCompatActivity {
         setContentView(R.layout.activity_all_tasks);
         db = new DBHelper(getApplicationContext());
 
-        setUpDatabase();
+        //setUpDatabase();
 
         List ts = db.getAllTasks();
 
@@ -173,7 +173,7 @@ public class AllTasks extends AppCompatActivity {
         Task t3 = new Task("nova karta za trolo", "to je opis", "ni videa","ni slike", "");
         Task t4 = new Task("kupi kratke hlače", "to je opis", "ni videa","ni slike", "15. 7. 2017");
         Task t5 = new Task("nalgesin", "to je opis", "ni videa","ni slike", "20. 8. 2017");
-        Task t6 = new Task("50e za počitnice na stran", "to je opis", "ni videa","ni slike", "13. 6. 2017");
+        Task t6 = new Task("50e za počitnice", "to je opis", "ni videa","ni slike", "13. 6. 2017");
         Task t7 = new Task("vrni knjige", "to je opis", "ni videa","ni slike", "");
         Task t8 = new Task("kupi puder", "to je opis", "ni videa","ni slike", "25. 6. 2017");
         Task t9 = new Task("aqua luna", "to je opis", "ni videa","ni slike", "");

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -54,6 +55,15 @@ public class AddCategory extends AppCompatActivity {
                         AddCategory.this,
                         "selectedColor: " + color,
                         Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // back button
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+
             }
         });
 
