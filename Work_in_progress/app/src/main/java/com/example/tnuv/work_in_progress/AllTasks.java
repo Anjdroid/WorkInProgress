@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -22,8 +23,9 @@ import java.util.List;
 import java.util.List;
 
 public class AllTasks extends AppCompatActivity {
-    DBHelper db;
-    int click = 1;
+    private DBHelper db;
+    private int click = 1;
+    private int checkboxState = 0;
 
     public class MyListener implements View.OnClickListener {
         int id;
@@ -38,6 +40,8 @@ public class AllTasks extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +103,37 @@ public class AllTasks extends AppCompatActivity {
             tw.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
             cb.setId(t.getID());
             tw.setId(t.getID());
+
+            // save checkbox status to database
+            checkboxState = 0;
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(CompoundButton arg0, boolean checked) {
+                    // TODO Auto-generated method stub
+                    if(checked)
+                    {
+                        checkboxState = 1;
+                    }
+                }
+            });
+            Log.d("ch", Integer.toString(checkboxState));
+            if (checkboxState == 1) {
+                db.taskIsDone(t);
+                Log.d("ch", Integer.toString(checkboxState));
+            }
+
             ll.addView(cb);
             ll.addView(tw);
             rl.addView(ll);
+
+            // see if task is done and check checkbox
+            boolean isChecked = false;
+            if (t.getDone() == 1) {
+                isChecked = true;
+            }
+            cb.setChecked(isChecked);
+
             tw.setOnClickListener(new MyListener(tw.getId()));
         }
 

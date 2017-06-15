@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Table Columns names
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
-    private static final String KEY_NAME_TASK = "name";
+    private static final String KEY_NAME_TASK = "name_task";
 
     private static final String KEY_DESC = "description";
     private static final String KEY_VID = "video";
@@ -51,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_TASK_ID = "task_id";
 
     private static final String CREATE_TABLE_TASK = "CREATE TABLE "
-            + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME
+            + TABLE_TASK + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME_TASK
             + " TEXT," + KEY_DESC + " TEXT," + KEY_VID
             + " TEXT," + KEY_IMG + " TEXT," + KEY_CREATED + " TEXT,"+  KEY_DEADLINE + " TEXT,"+ KEY_DONE + " INTEGER" + ")";
 
@@ -105,15 +105,12 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, t.getName());
+        values.put(KEY_NAME_TASK, t.getName());
         values.put(KEY_DESC, t.getDescription());
         values.put(KEY_VID, t.getVideo());
-        // TODO: what to do with image??
         values.put(KEY_IMG, t.getImage().toString());
-        // TODO: DATES?
         values.put(KEY_CREATED, getDateTime());
         values.put(KEY_DEADLINE, t.getDeadline().toString());
-        values.put(KEY_DEADLINE, 0);
 
         // insert row
         long task_id = db.insert(TABLE_TASK, null, values);
@@ -142,7 +139,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Task t = new Task();
         t.setID(c.getInt(c.getColumnIndex(KEY_ID)));
-        t.setName((c.getString(c.getColumnIndex(KEY_NAME))));
+        t.setName((c.getString(c.getColumnIndex(KEY_NAME_TASK))));
         t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
         t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
         // TODO: how to set image?
@@ -172,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 Task t = new Task();
                 t.setID(c.getInt(c.getColumnIndex(KEY_ID)));
-                t.setName((c.getString(c.getColumnIndex(KEY_NAME))));
+                t.setName((c.getString(c.getColumnIndex(KEY_NAME_TASK))));
                 t.setDescription(c.getString(c.getColumnIndex(KEY_DESC)));
                 t.setVideo((c.getString(c.getColumnIndex(KEY_VID))));
                 // TODO: how to set image?
@@ -192,6 +189,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * getting all tasks under single category name
      * */
+
     public List<Task> getAllTasksByCat(String cat_name) {
         List<Task> tasks = new ArrayList<Task>();
 
@@ -220,7 +218,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 t.setCreated(c.getString(c.getColumnIndex(KEY_CREATED)));
                 t.setDeadline(c.getString(c.getColumnIndex(KEY_DEADLINE)));
                 t.setDone(c.getInt(c.getColumnIndex(KEY_DONE)));
-
+                Log.d("lala", t.getName());
                 // add to task list
                 tasks.add(t);
             } while (c.moveToNext());
@@ -236,7 +234,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, t.getName());
+        values.put(KEY_NAME_TASK, t.getName());
         values.put(KEY_DESC, t.getDescription());
         values.put(KEY_VID, t.getVideo());
         // TODO: what to do with image??
@@ -256,6 +254,9 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_DONE, 1);
+
+        db.update(TABLE_TASK, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(t.getID()) });
     }
 
     /**
@@ -356,7 +357,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Deleting a category (+ tasks under this category)
+     * Deleting a category (+ deletes all tasks if boolean is true)
      */
     public void deleteCategory(Category cat, boolean should_delete_all_cat_tasks) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -373,7 +374,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 deleteTask(t.getID());
             }
         }
-
         // now delete the category
         db.delete(TABLE_CATEGORY, KEY_ID + " = ?",
                 new String[] { String.valueOf(cat.getID()) });

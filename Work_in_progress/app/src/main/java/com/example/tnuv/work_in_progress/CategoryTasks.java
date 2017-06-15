@@ -37,7 +37,9 @@ public class CategoryTasks extends AppCompatActivity {
             intent.putExtra("id", Integer.toString(this.id));
             startActivity(intent);
         }
+
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class CategoryTasks extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //add category
         Button addCat = (Button) findViewById(R.id.addTask);
         addCat.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +118,14 @@ public class CategoryTasks extends AppCompatActivity {
                 ll2.addView(tw2);
                 ll.addView(ll2);
                 ll.setPadding(100, 0, 100, 0);
+
+                // check if task is done
+                boolean isChecked = false;
+                if (t.getDone() == 1) {
+                    isChecked = true;
+                }
+                cb.setChecked(isChecked);
+
                 tw2.setOnClickListener(new CategoryTasks.MyListener(cb.getId()));
             }
             Button ib = new Button(this);
@@ -129,6 +140,13 @@ public class CategoryTasks extends AppCompatActivity {
             ib.setTextSize(20);
             ll.addView(ib);
             rl.addView(ll);
+            //add task
+            ib.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(CategoryTasks.this, AddTask.class);
+                    startActivity(intent);
+                }
+            });
         }
 
         Intent intent = getIntent();
