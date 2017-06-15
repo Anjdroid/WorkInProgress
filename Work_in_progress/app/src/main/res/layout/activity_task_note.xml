@@ -57,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50px"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/note">
 
             <TextView
                 android:id="@+id/editText22"
@@ -96,19 +97,6 @@
                 android:fontFamily="casual"
                 android:textSize="20sp"
                 android:hint="Task video"
-                android:inputType="textMultiLine" />
-
-            <TextView
-                android:id="@+id/editText4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="100px"
-                android:layout_marginStart="100px"
-                android:layout_marginTop="20px"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:textSize="20sp"
-                android:hint="Task image"
                 android:inputType="textMultiLine" />
 
             <TextView

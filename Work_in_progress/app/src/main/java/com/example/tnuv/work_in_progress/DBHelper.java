@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 13;
 
     // Database Name
     private static final String DATABASE_NAME = "todoDB";
@@ -338,6 +338,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return c1;
     }
+
+
 
     /**
      * Updating a category

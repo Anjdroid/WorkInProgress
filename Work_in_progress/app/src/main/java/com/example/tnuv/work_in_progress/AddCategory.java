@@ -61,9 +61,11 @@ public class AddCategory extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText et = (EditText) findViewById(R.id.editText);
-                EditText et2 = (EditText) findViewById(R.id.editText2);
+                EditText lat = (EditText) findViewById(R.id.editText22);
+                EditText lng = (EditText) findViewById(R.id.editText23);
                 String name= et.getText().toString();
-                String location = et2.getText().toString();
+                String location = lat.getText().toString() +","+ lng.getText().toString();
+                Log.d("location", location);
                 // create new category
                 Category c = new Category(name, color, location);
                 long cat_id = db.createCategory(c);

@@ -112,15 +112,15 @@ public class AllTasks extends AppCompatActivity {
         db = new DBHelper(getApplicationContext());
 
         // create categories
-        Category c1 = new Category("Food", "#FFFFD1", "");
-        Category c2 = new Category("Home", "#DBFFD6", "");
-        Category c3 = new Category("Transport", "#C4FAF8", "");
-        Category c4 = new Category("Clothing", "#ECD4FF", "");
-        Category c5 = new Category("Health", "#FBE4FF", "");
-        Category c6 = new Category("Savings", "#AFF8DB", "");
-        Category c7 = new Category("Education", "#FFCBC1", "");
-        Category c8 = new Category("Cosmetics", "#AFCBFF", "");
-        Category c9 = new Category("Fun", "#85E3FF", "");
+        Category c1 = new Category("Food", "#FFFFD1", "46.0675788,14.5358508");
+        Category c2 = new Category("Home", "#DBFFD6", "46.047073,14.4831814");
+        Category c3 = new Category("Transport", "#C4FAF8", "46.0577365,14.5113548");
+        Category c4 = new Category("Clothing", "#ECD4FF", "46.2357133,15.253724");
+        Category c5 = new Category("Health", "#FBE4FF", "46.0465076,14.506544");
+        Category c6 = new Category("Savings", "#AFF8DB", "46.0563081,14.5351745");
+        Category c7 = new Category("Education", "#FFCBC1", "46.2323889,15.2643528");
+        Category c8 = new Category("Cosmetics", "#AFCBFF", "46.5422819,15.6338484");
+        Category c9 = new Category("Fun", "#85E3FF", "45.5480668,13.7295807");
 
         // insert categories in db
         long cat1 = db.createCategory(c1);
@@ -134,8 +134,8 @@ public class AllTasks extends AppCompatActivity {
         long cat9 = db.createCategory(c9);
 
         // create tasks
-        Task t1 = new Task("kupi jogurt", "to je opis", "ni videa","ni slike", "15. 6. 2017");
-        Task t2 = new Task("kupi brisače", "to je opis", "ni videa","ni slike", "");
+        Task t1 = new Task("kupi jogurt", "to je opis", "ni videa","http://www.l-m.si/img/mu/mu-jogurt-3-2-500g-photo.jpg", "15. 6. 2017");
+        Task t2 = new Task("kupi brisače", "to je opis", "ni videa","http://i.dailymail.co.uk/i/pix/2014/11/14/1415954562162_wps_48_Brightly_coloured_towels_.jpg", "");
         Task t3 = new Task("nova karta za trolo", "to je opis", "ni videa","ni slike", "");
         Task t4 = new Task("kupi kratke hlače", "to je opis", "ni videa","ni slike", "15. 7. 2017");
         Task t5 = new Task("nalgesin", "to je opis", "ni videa","ni slike", "20. 8. 2017");
@@ -144,12 +144,6 @@ public class AllTasks extends AppCompatActivity {
         Task t8 = new Task("kupi puder", "to je opis", "ni videa","ni slike", "25. 6. 2017");
         Task t9 = new Task("aqua luna", "to je opis", "ni videa","ni slike", "");
         Task t10 = new Task("kupi mleko", "to je opis", "ni videa","ni slike", "");
-        Task t55 = new Task("nalgesin", "to je opis", "ni videa","ni slike", "20. 8. 2017");
-        Task t66 = new Task("50e za počitnice na stran", "to je opis", "ni videa","ni slike", "13. 6. 2017");
-        Task t77 = new Task("vrni knjige", "to je opis", "ni videa","ni slike", "");
-        Task t88 = new Task("kupi puder", "to je opis", "ni videa","ni slike", "25. 6. 2017");
-        Task t99 = new Task("aqua luna", "to je opis", "ni videa","ni slike", "");
-        Task t101 = new Task("kupi mleko", "to je opis", "ni videa","ni slike", "");
 
         //insert tasks into db under categories
         long t1_id = db.createTask(t1, cat1);
@@ -162,11 +156,5 @@ public class AllTasks extends AppCompatActivity {
         long t8_id = db.createTask(t8, cat8);
         long t9_id = db.createTask(t9, cat9);
         long t10_id = db.createTask(t10, cat1);
-        long t5_id2 = db.createTask(t55, cat5);
-        long t6_id2 = db.createTask(t66, cat6);
-        long t7_id2 = db.createTask(t77, cat7);
-        long t8_id2 = db.createTask(t88, cat8);
-        long t9_id2 = db.createTask(t99, cat9);
-        long t10_id2 = db.createTask(t101, cat1);
     }
 }

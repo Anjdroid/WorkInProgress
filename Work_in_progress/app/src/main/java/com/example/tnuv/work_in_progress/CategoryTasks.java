@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -129,7 +130,23 @@ public class CategoryTasks extends AppCompatActivity {
             ll.addView(ib);
             rl.addView(ll);
         }
+
+        Intent intent = getIntent();
+        String lala = intent.getStringExtra("idC");
+        if (lala != null) {
+            int idC = Integer.parseInt(intent.getStringExtra("idC"));
+            focusOnView(idC);
+        }
     }
 
-
+    private final void focusOnView(int iddd){
+        final ScrollView sv = (ScrollView) findViewById(R.id.scv);
+        final LinearLayout ll = (LinearLayout) findViewById(iddd);
+        sv.post(new Runnable() {
+            @Override
+            public void run() {
+                sv.scrollTo(0, ll.getTop());
+            }
+        });
+    }
 }

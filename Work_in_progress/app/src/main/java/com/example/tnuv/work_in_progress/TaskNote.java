@@ -2,14 +2,20 @@ package com.example.tnuv.work_in_progress;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.io.InputStream;
+import java.net.URL;
 
 public class TaskNote extends AppCompatActivity {
 
@@ -47,8 +53,24 @@ public class TaskNote extends AppCompatActivity {
         // TODO: get category spinner and set spinner value to task category
         TextView video = (TextView) findViewById (R.id.editText3);
         video.setText(t.getVideo());
-        TextView image = (TextView) findViewById(R.id.editText4);
-        image.setText(t.getImage());
+
+        //image
+        String url = t.getImage();
+        Drawable dd = LoadImage(url);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.note);
+        if (dd != null) {
+            ImageView iv = new ImageView(this);
+            iv.setBackground(dd);
+            ll.addView(iv);
+        }
+        else {
+            TextView tv = new TextView(this);
+            tv.setText("no image");
+            ll.addView(tv);
+        }
+        /*TextView image = (TextView) findViewById(R.id.editText4);
+        image.setText(t.getImage());*/
+
         TextView deadline = (TextView) findViewById(R.id.editText5);
         deadline.setText(t.getDeadline());
         TextView category = (TextView) findViewById(R.id.editText22);
@@ -60,5 +82,15 @@ public class TaskNote extends AppCompatActivity {
 
 
         // set data in view
+    }
+
+    public static Drawable LoadImage(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
