@@ -43,7 +43,7 @@
                 android:background="@drawable/button2"
                 android:padding="7dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/settings" />
+                android:src="@drawable/settings" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -83,7 +83,7 @@
                 android:adjustViewBounds="true"
                 android:padding="7dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/list"/>
+                android:src="@drawable/list"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -125,7 +125,7 @@
                 android:adjustViewBounds="true"
                 android:padding="7dp"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/quad"/>
+                android:src="@drawable/quad"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

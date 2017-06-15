@@ -37,10 +37,6 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_view);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-        db = new DBHelper(getApplicationContext());
 
         //category view
         ImageButton catButton = (ImageButton) findViewById(R.id.catView);
@@ -74,6 +70,11 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
                 startActivity(intent);
             }
         });
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+        db = new DBHelper(getApplicationContext());
 
     }
 

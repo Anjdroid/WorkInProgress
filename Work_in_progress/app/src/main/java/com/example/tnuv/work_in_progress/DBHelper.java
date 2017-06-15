@@ -237,9 +237,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(KEY_NAME_TASK, t.getName());
         values.put(KEY_DESC, t.getDescription());
         values.put(KEY_VID, t.getVideo());
-        // TODO: what to do with image??
         values.put(KEY_IMG, t.getImage().toString());
-        // TODO: DATES?
         values.put(KEY_DEADLINE, t.getDeadline().toString());
 
         // updating row
@@ -339,8 +337,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return c1;
     }
-
-
 
     /**
      * Updating a category

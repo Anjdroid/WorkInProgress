@@ -97,8 +97,7 @@ public class TaskNote extends AppCompatActivity {
             ll.addView(web);
         } else {
             TextView tv = new TextView(this);
-            tv.setText("\n" +
-                    "        no image");
+            tv.setText("\n" + "        no image");
             ll.addView(tv);
         }
 
